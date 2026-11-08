@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Offline Vazirmatn (place the file at public/fonts/Vazirmatn.woff2) */
+/* ------------------------------------------------------------------ */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* surfaces */
+    --page: #f7f3e9;
+    --page-soft: #fbfaf5;
+    --card: #ffffff;
+    --chip: #f0eee6;
+    --chip-text: #555951;
+
+    /* hairlines */
+    --line: rgba(0, 0, 0, 0.1);
+    --line-strong: rgba(0, 0, 0, 0.14);
+
+    /* text */
+    --ink: #1d211c;
+    --ink-2: #30352e;
+    --muted: #62665f;
+    --muted-2: #6e726b;
+    --muted-3: #777a73;
+
+    /* misc */
+    --wash: rgba(0, 0, 0, 0.05);
+    --dots: #94988e;
+
+    /* brand */
+    --lime: #d9ff6b;
+    --coral: #ff7451;
+    --coral-hover: #ff896c;
+    --coral-soft: #fff0eb;
+    --coral-text: #d94d2c;
+
+    /* dark bands */
+    --night: #1d211c;
+    --night-2: #161915;
+    --on-night: #ffffff;
+    --on-night-muted: rgba(255, 255, 255, 0.6);
+    --on-night-line: rgba(255, 255, 255, 0.14);
+
+    /* fonts */
+    --font-body: var(--font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Manrope", var(--font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+    --font-fa: "Vazirmatn", Tahoma, ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .dark {
+    --page: #12140e;
+    --page-soft: #191c14;
+    --card: #1a1d14;
+    --chip: #262a1f;
+    --chip-text: #c7cabc;
+
+    --line: rgba(255, 255, 255, 0.1);
+    --line-strong: rgba(255, 255, 255, 0.16);
+
+    --ink: #f4f2e8;
+    --ink-2: #dcd8c9;
+    --muted: #a7ab9d;
+    --muted-2: #9aa08f;
+    --muted-3: #8d9282;
+
+    --wash: rgba(255, 255, 255, 0.07);
+    --dots: #5c6254;
+
+    --coral: #ff8666;
+    --coral-hover: #ff9d82;
+    --coral-soft: rgba(255, 116, 81, 0.16);
+    --coral-text: #ffa38a;
+
+    --night: #0c0e08;
+    --night-2: #080a06;
+    --on-night: #f4f2e8;
+    --on-night-muted: rgba(244, 242, 232, 0.6);
+    --on-night-line: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Persian typography switches the whole font stack */
+  html[lang="fa"] {
+    --font-body: var(--font-fa);
+    --font-display: var(--font-fa);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+
+  ::selection {
+    background: rgba(255, 116, 81, 0.28);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* ================================================================== */
+/* Unlayered rules — these intentionally beat the utility layer       */
+/* ================================================================== */
+
+/* Mirror directional glyphs (arrow / chevron) in RTL */
+[dir="rtl"] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+/* Italic serif accent for the hero — becomes upright Vazirmatn in fa */
+.accent-italic {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  letter-spacing: -0.055em;
+}
+html[lang="fa"] .accent-italic {
+  font-family: var(--font-fa);
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+/* Persian has no uppercase and hates tight tracking / cramped leading */
+html[lang="fa"] body {
+  font-feature-settings: normal;
+}
+
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3,
+html[lang="fa"] .eyebrow {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="fa"] h1 {
+  line-height: 1.25;
+}
+
+html[lang="fa"] h2 {
+  line-height: 1.35;
+}
